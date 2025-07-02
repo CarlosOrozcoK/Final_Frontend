@@ -1,7 +1,5 @@
-// src/hooks/useLogin.jsx
 import { useState } from 'react';
-
-const API_URL = 'http://localhost:3000/Final_backend/v1/auth/login';
+import apiClient from '../../services/api.jsx';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -12,26 +10,21 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
+      const { data, status } = await apiClient.post('/auth/login', { username, password });
 
-      const data = await res.json();
-
-      if (!res.ok) {
+      if (status !== 200) {
         throw new Error(data.msg || 'Error al iniciar sesión');
       }
 
-      const { token, username: name } = data.userDetails;
+      const { token, username: name, role } = data.userDetails;
 
       localStorage.setItem('token', token);
       localStorage.setItem('username', name);
+      localStorage.setItem('role', role);
 
       return { success: true };
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.msg || err.message || 'Error al iniciar sesión');
       return { success: false };
     } finally {
       setLoading(false);
@@ -41,6 +34,7 @@ export const useLogin = () => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('role');
   };
 
   return { login, logout, error, loading };

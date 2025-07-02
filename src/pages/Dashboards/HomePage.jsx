@@ -3,19 +3,19 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Sidebar = ({ role, activeMenu, setActiveMenu }) => {
   const menuItemsOwner = [
-    { id: 'home', label: 'Inicio' },
-    { id: 'doctores', label: 'Doctores' },
-    { id: 'pacientes', label: 'Pacientes' },
-    { id: 'agregarDoctor', label: 'Agregar Doctor' },
+    { id: "home", label: "Inicio" },
+    { id: "doctores", label: "Doctores" },
+    { id: "pacientes", label: "Pacientes" },
+    { id: "agregarDoctor", label: "Agregar Doctor" },
   ];
 
   const menuItemsClient = [
-    { id: 'home', label: 'Inicio' },
-    { id: 'misCitas', label: 'Mis Citas' },
-    { id: 'perfil', label: 'Perfil' },
+    { id: "home", label: "Inicio" },
+    { id: "misCitas", label: "Mis Citas" },
+    { id: "perfil", label: "Perfil" },
   ];
 
-  const menuItems = role === 'OWNER_ROLE' ? menuItemsOwner : menuItemsClient;
+  const menuItems = role === "OWNER_ROLE" ? menuItemsOwner : menuItemsClient;
 
   return (
     <aside className="w-64 bg-red-700 text-white min-h-screen p-6 flex flex-col">
@@ -27,7 +27,7 @@ const Sidebar = ({ role, activeMenu, setActiveMenu }) => {
               key={id}
               onClick={() => setActiveMenu(id)}
               className={`mb-4 cursor-pointer rounded px-3 py-2 hover:bg-red-600 ${
-                activeMenu === id ? 'bg-red-800 font-semibold' : ''
+                activeMenu === id ? "bg-red-800 font-semibold" : ""
               }`}
             >
               {label}
@@ -155,12 +155,22 @@ export default function MedicalHomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeMenu, setActiveMenu] = useState("home");
   const [role, setRole] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Aquí obtén el rol real, por ejemplo desde localStorage
+    // Obtén rol y token desde localStorage
     const userRole = localStorage.getItem("role") || "CLIENT_ROLE"; // default cliente
     setRole(userRole);
+
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) =>
@@ -179,7 +189,6 @@ export default function MedicalHomePage() {
       case "home":
         return (
           <>
-            {}
             <header className="bg-gradient-to-r from-red-700 to-red-600 shadow-lg">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <div className="flex items-center space-x-3">
@@ -220,15 +229,25 @@ export default function MedicalHomePage() {
                     Nosotros
                   </Link>
                 </nav>
-                <button
-                  className="bg-white text-red-800 hover:bg-red-100 font-medium py-2 px-6 rounded-full transition-colors shadow-md"
-                  onClick={() => navigate("/login")}
-                >
-                  Inicia Sesión
-                </button>
+                {isLoggedIn ? (
+                  <button
+                    onClick={handleLogout}
+                    className="bg-white text-red-800 hover:bg-red-100 font-medium py-2 px-6 rounded-full transition-colors shadow-md"
+                  >
+                    Cerrar Sesión
+                  </button>
+                ) : (
+                  <button
+                    className="bg-white text-red-800 hover:bg-red-100 font-medium py-2 px-6 rounded-full transition-colors shadow-md"
+                    onClick={() => navigate("/login")}
+                  >
+                    Inicia Sesión
+                  </button>
+                )}
               </div>
             </header>
 
+            {/* ... resto de contenido home (carousel, servicios, especialidades, contacto) */}
             <section className="relative mb-16 h-[500px] md:h-[600px] overflow-hidden">
               <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
                 <img
@@ -377,11 +396,7 @@ export default function MedicalHomePage() {
         return (
           <section className="p-8 max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Sección Doctores</h2>
-            <p>
-              Aquí puedes listar, agregar o editar doctores. (Solo disponible para
-              dueño)
-            </p>
-            {}
+            <p>Aquí puedes listar, agregar o editar doctores. (Solo disponible para dueño)</p>
           </section>
         );
       case "pacientes":
@@ -421,9 +436,7 @@ export default function MedicalHomePage() {
     <div className="flex min-h-screen font-sans text-gray-800">
       <Sidebar role={role} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
-      <main className="flex-1 bg-gray-50 overflow-auto">
-        {renderMainContent()}
-      </main>
+      <main className="flex-1 bg-gray-50 overflow-auto">{renderMainContent()}</main>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useAuth } from '../../shared/hooks/useAuth.jsx';
 
-const Sidebar = ({ role, activeMenu, setActiveMenu }) => {
+const Sidebar = ({ activeMenu, setActiveMenu }) => {
+  const { role } = useAuth();
+
   const menuItemsOwner = [
     { id: 'home', label: 'Inicio' },
     { id: 'doctores', label: 'Doctores' },

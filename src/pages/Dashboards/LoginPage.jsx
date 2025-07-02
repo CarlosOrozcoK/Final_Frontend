@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLogin } from '../../shared/hooks/useLogin'; 
+import { useLogin } from '../../shared/hooks/useLogin';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ const LoginPage = () => {
     e.preventDefault();
     const result = await login(username, password);
     if (result.success) {
-      navigate('/HomePage');
+      navigate('/HomePage'); 
     }
   };
 
