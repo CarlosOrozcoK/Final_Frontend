@@ -228,9 +228,13 @@ export default function MedicalHomePage() {
                     <p className="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200">
                       {carouselItems[currentSlide].description}
                     </p>
-                    <button className="bg-red-600 hover:bg-red-700 text-white py-3 px-8 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-fade-in-up delay-400">
-                      Agendar Cita Ahora
+                    <button
+                        onClick={() => navigate('/agendar-cita')}
+                        className="bg-red-600 hover:bg-red-700 text-white py-3 px-8 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105 animate-fade-in-up delay-400"
+                            >
+                              Agendar Cita Ahora
                     </button>
+
                   </div>
                 </div>
               </div>

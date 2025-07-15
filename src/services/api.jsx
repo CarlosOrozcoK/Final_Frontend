@@ -44,6 +44,24 @@ export const getDoctors = async () => {
   }
 };
 
+export const crearCita = async ({ doctorId, date }) => {
+  try {
+    const response = await apiClient.post('/appointments', { doctorId, date });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+export const actualizarPerfilUsuario = async (id, datosActualizados) => {
+  try {
+    const response = await apiClient.put(`/users/${id}`, datosActualizados);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+
+
 export default apiClient;
 
 
