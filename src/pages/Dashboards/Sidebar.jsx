@@ -12,7 +12,7 @@ const Sidebar = ({ role, activeMenu, setActiveMenu }) => {
   const menuItemsClient = [
     { id: 'home', label: 'Inicio', path: '/' },
     { id: 'misCitas', label: 'Mis Citas', path: '/mis-citas' },
-    { id: 'perfil', label: 'Perfil', path: '/perfil' },
+    { id: 'userDetails', label: 'Perfil', path: '/UserDetails ' },
   ];
 
   const menuItems = role === 'OWNER_ROLE' ? menuItemsOwner : menuItemsClient;

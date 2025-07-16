@@ -52,6 +52,7 @@ export const crearCita = async ({ doctorId, date }) => {
     throw error.response?.data || error;
   }
 };
+
 export const actualizarPerfilUsuario = async (id, datosActualizados) => {
   try {
     const response = await apiClient.put(`/users/${id}`, datosActualizados);
@@ -61,6 +62,14 @@ export const actualizarPerfilUsuario = async (id, datosActualizados) => {
   }
 };
 
+export const getDatosPersonales = async () => {
+  try {
+    const response = await apiClient.get('/users/mi-perfil');
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
 
 export default apiClient;
 

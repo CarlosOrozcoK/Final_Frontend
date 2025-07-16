@@ -7,6 +7,7 @@ import AgregarDoctorPage from "./components/Doctores/AgregarDoctorPage.jsx";
 import ClientesPage from "./components/Clientes/ClientesPage.jsx";
 import AgendarCitaPage from "./components/Citas/AgendarCitaPage";
 import MisCitasPage from './components/Citas/MisCitasPage.jsx';
+import UserDetails from "./components/UsersDetails/UserDetails.jsx";
 
 
 
@@ -20,6 +21,8 @@ const routes = [
   { path: "/clientes", element: <ClientesPage /> },
   { path: "/agendar-cita", element: <AgendarCitaPage /> },
   { path: "/mis-citas", element: <MisCitasPage /> }, 
+  { path: "/userDetails", element: <UserDetails /> }, 
+
 
 
 
