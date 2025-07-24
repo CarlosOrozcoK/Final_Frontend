@@ -6,6 +6,11 @@ const MisCitasPage = () => {
   const { citas, loading, error } = useMisCitas();
   const navigate = useNavigate();
 
+  const handlePagarCita = (citaId) => {
+    console.log('Pagando cita con ID:', citaId);
+    navigate(`/payment/${citaId}`);
+  };
+
   return (
     <section className="p-8 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-red-700">Mis Citas</h2>
@@ -32,6 +37,15 @@ const MisCitasPage = () => {
             <p className="text-gray-700">
               Estado: <span className="font-semibold capitalize">{cita.status}</span>
             </p>
+
+            {cita.status === 'scheduled' && (
+              <button
+                onClick={() => handlePagarCita(cita._id)}
+                className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full font-semibold transition-all shadow"
+              >
+                💳 Pagar
+              </button>
+            )}
           </div>
         ))}
       </div>

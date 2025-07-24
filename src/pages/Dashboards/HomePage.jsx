@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Sidebar from '../Dashboards/Sidebar.jsx';
-
+import Sidebar from '../Dashboards/Sidebar.jsx'; // Asegúrate que esta ruta sea CORRECTA
 
 
 const medicalServices = [
@@ -11,7 +10,7 @@ const medicalServices = [
     description:
       "Atención médica integral para toda la familia. Diagnóstico y tratamiento de enfermedades comunes.",
     image:
-      "https://www.shutterstock.com/image-photo/medical-concept-indian-beautiful-female-600nw-1638202957.jpg",
+      "https://centromedicoabc.com/storage/2024/04/Un-medico-general.webp",
   },
   {
     id: 2,
@@ -19,7 +18,7 @@ const medicalServices = [
     description:
       "Cuidado especializado para la salud de tu corazón. Diagnóstico y prevención de enfermedades cardíacas.",
     image:
-      "https://www.shutterstock.com/image-photo/doctor-cardiologist-listening-patient-heart-600nw-1926639551.jpg",
+      "https://olympia.quironsalud.com/es/medical-center/cardiologia.ficheros/3275379-olympia-cardiologia.jpg?width=790&height=526",
   },
   {
     id: 3,
@@ -27,7 +26,7 @@ const medicalServices = [
     description:
       "Atención dedicada a la salud y desarrollo de los más pequeños. Consultas de crecimiento y vacunación.",
     image:
-      "https://www.shutterstock.com/image-photo/indian-male-pediatrician-doctor-checking-600nw-2158652309.jpg",
+      "https://centromedicoabc.com/storage/2022/12/pediatria.jpg",
   },
   {
     id: 4,
@@ -35,7 +34,7 @@ const medicalServices = [
     description:
       "Expertos en el cuidado de tu piel. Diagnóstico y tratamiento de afecciones cutáneas.",
     image:
-      "https://www.shutterstock.com/image-photo/dermatologist-consultation-dermatology-doctor-examining-600nw-2234057965.jpg",
+      "https://www.esneca.lat/wp-content/uploads/especialidades-en-dermatologia.jpg",
   },
 ];
 
@@ -45,21 +44,21 @@ const medicalSpecialties = [
     title: "Ginecología",
     description: "Salud integral para la mujer en todas las etapas de su vida.",
     image:
-      "https://www.shutterstock.com/image-photo/unrecognizable-female-gynecologist-doctor-examining-600nw-2178229891.jpg",
+      "https://aisafiv.com/wp-content/uploads/2019/11/que-es-la-ginecologia-zaragoza.jpg",
   },
   {
     id: 2,
     title: "Odontología",
     description: "Expertos en salud bucal para una sonrisa sana y radiante.",
     image:
-      "https://www.shutterstock.com/image-photo/young-man-african-origin-visiting-600nw-1934988755.jpg",
+      "https://faceclinic.es/wp-content/uploads/2024/08/odontologia-conservadora.jpeg",
   },
   {
     id: 3,
     title: "Oftalmología",
     description: "Diagnóstico y tratamiento de enfermedades oculares.",
     image:
-      "https://www.shutterstock.com/image-photo/female-optometrist-checks-mans-vision-600nw-1077759605.jpg",
+      "https://aio-oftalmologia.com/wp-content/uploads/De-que-se-ocupa-un-oftalmologo.jpg",
   },
   {
     id: 4,
@@ -67,7 +66,7 @@ const medicalSpecialties = [
     description:
       "Rehabilitación y mejora de la movilidad a través de terapias físicas.",
     image:
-      "https://www.shutterstock.com/image-photo/cropped-shot-professional-physiotherapist-working-600nw-1833596899.jpg",
+      "https://chronicfisioterapia.com/wp-content/uploads/2023/02/fisioterapia-traumatologica_2-e1676193365519.jpeg",
   },
 ];
 
@@ -93,7 +92,7 @@ const carouselItems = [
   {
     id: 1,
     image:
-      "https://www.shutterstock.com/image-photo/medical-team-standing-together-smiling-600nw-1833596956.jpg",
+      "https://cdn.lecturio.com/assets/Featured-image-Student-Blog-Hospital-Team.jpg",
     title: "Tu Salud, Nuestra Prioridad",
     description:
       "Descubre nuestros servicios integrales de atención médica y agenda tu cita online fácilmente.",
@@ -123,8 +122,7 @@ export default function MedicalHomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Obtén rol y token desde localStorage
-    const userRole = localStorage.getItem("role") || "CLIENT_ROLE"; // default cliente
+    const userRole = localStorage.getItem("role") || "CLIENT_ROLE";
     setRole(userRole);
 
     const token = localStorage.getItem("token");
@@ -154,6 +152,10 @@ export default function MedicalHomePage() {
       case "home":
         return (
           <>
+            {/* La cabecera original. En pantallas grandes (md en adelante), la nav interna será visible.
+                En pantallas pequeñas, esta nav puede considerarse redundante si el Sidebar es la principal.
+                La dejo como estaba en tu código original, solo ten en cuenta esta consideración.
+            */}
             <header className="bg-gradient-to-r from-red-700 to-red-600 shadow-lg">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
                 <div className="flex items-center space-x-3">
@@ -168,31 +170,11 @@ export default function MedicalHomePage() {
                     Clínica Salud Guatemala
                   </h1>
                 </div>
-                <nav className="hidden md:flex space-x-6">
-                  <Link
-                    to="/HomePage"
-                    className="text-white hover:text-red-100 font-medium transition-colors"
-                  >
-                    Inicio
-                  </Link>
-                  <Link
-                    to="/services"
-                    className="text-white hover:text-red-100 font-medium transition-colors"
-                  >
-                    Servicios
-                  </Link>
-                  <Link
-                    to="/specialties"
-                    className="text-white hover:text-red-100 font-medium transition-colors"
-                  >
-                    Especialidades
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-red-100 font-medium transition-colors"
-                  >
-                    Nosotros
-                  </Link>
+                <nav className="hidden md:flex space-x-6"> {/* Esta nav se oculta en mobile */}
+                  <Link to="/HomePage" className="text-white hover:text-red-100 font-medium transition-colors">Inicio</Link>
+                  <Link to="/services" className="text-white hover:text-red-100 font-medium transition-colors">Servicios</Link>
+                  <Link to="/specialties" className="text-white hover:text-red-100 font-medium transition-colors">Especialidades</Link>
+                  <Link to="/about" className="text-white hover:text-red-100 font-medium transition-colors">Nosotros</Link>
                 </nav>
                 {isLoggedIn ? (
                   <button
@@ -212,7 +194,7 @@ export default function MedicalHomePage() {
               </div>
             </header>
 
-            {/* ... resto de contenido home (carousel, servicios, especialidades, contacto) */}
+            {/* Resto de contenido de la página de inicio */}
             <section className="relative mb-16 h-[500px] md:h-[600px] overflow-hidden">
               <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
                 <img
@@ -234,7 +216,6 @@ export default function MedicalHomePage() {
                             >
                               Agendar Cita Ahora
                     </button>
-
                   </div>
                 </div>
               </div>
@@ -368,13 +349,16 @@ export default function MedicalHomePage() {
             <p>Aquí puedes listar, agregar o editar doctores. (Solo disponible para dueño)</p>
           </section>
         );
-      case "pacientes":
+      // **CAMBIO IMPORTANTE AQUÍ**: Asegúrate de que estos `case` coincidan con los `id` de tu Sidebar.jsx
+      case "clientes": // En tu Sidebar, el ID es 'clientes'
         return (
           <section className="p-8 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Sección Pacientes</h2>
-            <p>Listado y gestión de pacientes (Solo disponible para dueño).</p>
+            <h2 className="text-3xl font-bold mb-6">Sección Clientes</h2>
+            <p>Listado y gestión de clientes (Solo disponible para dueño).</p>
           </section>
         );
+      // Si tienes un enlace para "Agregar Doctor" en el Sidebar, debería tener un ID.
+      // Si no lo tienes, este case no se alcanzará desde el Sidebar.
       case "agregarDoctor":
         return (
           <section className="p-8 max-w-5xl mx-auto">
@@ -389,10 +373,10 @@ export default function MedicalHomePage() {
             <p>Listado de citas del paciente (cliente).</p>
           </section>
         );
-      case "perfil":
+      case "userDetails": // En tu Sidebar, el ID es 'userDetails'
         return (
           <section className="p-8 max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Perfil</h2>
+            <h2 className="text-3xl font-bold mb-6">Perfil del Usuario</h2>
             <p>Información personal y configuración (cliente).</p>
           </section>
         );
@@ -403,9 +387,13 @@ export default function MedicalHomePage() {
 
   return (
     <div className="flex min-h-screen font-sans text-gray-800">
+      {/* Sidebar */}
       <Sidebar role={role} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
-      <main className="flex-1 bg-gray-50 overflow-auto">{renderMainContent()}</main>
+      {/* Main content */}
+      <main className="flex-1 bg-gray-50 min-h-screen overflow-y-auto lg:ml-64">
+        {renderMainContent()}
+      </main>
     </div>
   );
 }
