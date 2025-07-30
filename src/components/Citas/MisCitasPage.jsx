@@ -12,7 +12,8 @@ const MisCitasPage = () => {
       setCurrentCitas(fetchedCitas);
     }
   }, [fetchedCitas]);
-
+ 
+  
   const navigate = useNavigate();
 
   const handleCancelCita = async (citaId) => {
