@@ -1,11 +1,11 @@
 import { Navigate } from "react-router";
-import HomePage from "./pages/Dashboards/HomePage";
-import LoginPage from "./pages/Dashboards/LoginPage";
-import RegisterPage from "./pages/Dashboards/RegisterPage";
+import HomePage from "./pages/Dashboards/HomePage.jsx";
+import LoginPage from "./pages/Dashboards/LoginPage.jsx";
+import RegisterPage from "./pages/Dashboards/RegisterPage.jsx";
 import DoctoresPage from "./components/Doctores/DoctoresPage.jsx";
 import AgregarDoctorPage from "./components/Doctores/AgregarDoctorPage.jsx";
 import ClientesPage from "./components/Clientes/ClientesPage.jsx";
-import AgendarCitaPage from "./components/Citas/AgendarCitaPage";
+import AgendarCitaPage from "./components/Citas/AgendarCitaPage.jsx";
 import MisCitasPage from './components/Citas/MisCitasPage.jsx';
 import UserDetails from "./components/UsersDetails/UserDetails.jsx";
 

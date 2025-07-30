@@ -7,16 +7,19 @@ const useMisCitas = () => {
   const [error, setError] = useState(null);
 
   const fetchCitas = async () => {
-    try {
-      setLoading(true);
-      const response = await apiClient.get('/appointments');
-      setCitas(response.data.appointments);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error al obtener citas');
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    const response = await apiClient.get('/appointments');
+    console.log("📦 Respuesta del backend:", response.data);
+    setCitas(response.data.appointments);
+  } catch (err) {
+    console.error("❌ Error al obtener citas:", err);
+    setError(err.response?.data?.message || 'Error al obtener citas');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     fetchCitas();
