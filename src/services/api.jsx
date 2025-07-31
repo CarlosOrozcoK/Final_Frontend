@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000/Final_backend/v1';
+const API_BASE_URL = 'https://final-backend-ra1x.onrender.com/Final_backend/v1';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
