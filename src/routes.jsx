@@ -8,6 +8,7 @@ import ClientesPage from "./components/Clientes/ClientesPage.jsx";
 import AgendarCitaPage from "./components/Citas/AgendarCitaPage.jsx";
 import MisCitasPage from './components/Citas/MisCitasPage.jsx';
 import UserDetails from "./components/UsersDetails/UserDetails.jsx";
+import PaymentPage from  "./components/Payment/PaymentPage.jsx"
 
 
 
@@ -21,7 +22,10 @@ const routes = [
   { path: "/clientes", element: <ClientesPage /> },
   { path: "/agendar-cita", element: <AgendarCitaPage /> },
   { path: "/mis-citas", element: <MisCitasPage /> }, 
-  { path: "/userDetails", element: <UserDetails /> }, 
+  { path: "/userDetails", element: <UserDetails /> },
+  { path: "/payment/:citaId", element: <PaymentPage /> },
+
+  
 
 
 

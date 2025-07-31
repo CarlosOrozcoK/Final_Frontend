@@ -71,6 +71,55 @@ export const getDatosPersonales = async () => {
   }
 };
 
+// ─── PAGOS ─────────────────────────────────────────────────────────
+
+export const crearPagoCita = async ({ appointmentId, amount, method, transactionId }) => {
+  try {
+    const response = await apiClient.post('/payments', {
+      appointmentId,
+      amount,
+      method,
+      transactionId,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+
+export const obtenerPagosPorCita = async (appointmentId) => {
+  try {
+    const response = await apiClient.get(`/payments/${appointmentId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+
+export const actualizarEstadoPago = async (paymentId, status) => {
+  try {
+    const response = await apiClient.put(`/payments/${paymentId}`, { status });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+
+export const generarFactura = async ({ appointmentId, paymentId }) => {
+  try {
+    const response = await apiClient.post(
+      '/invoices/crear',
+      { appointmentId, paymentId },
+      { responseType: 'blob' } 
+    );
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
+  }
+};
+
+
+
 export default apiClient;
 
 
